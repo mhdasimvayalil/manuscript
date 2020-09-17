@@ -27,7 +27,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   
 </head>
 
@@ -298,7 +298,7 @@
               </div>
 
               <div class="col-lg-6">
-                <form action="https://script.google.com/macros/s/AKfycbxcHmvCzb8ygdMHrBmR9IYvM8Yuc3ESjgpnPG2HUl57aakT3w-3/exec" method="post" role="form" class="php-email-form">
+                <form id="submit-form" action="" role="form" class="php-email-form">
                   <div class="form-row">
                     <div class="col-md-6 form-group">
                       <label for="name">Your Name</label>
@@ -433,6 +433,26 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    $("#submit-form").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:"https://script.google.com/macros/s/AKfycbxcHmvCzb8ygdMHrBmR9IYvM8Yuc3ESjgpnPG2HUl57aakT3w-3/exec",
+            data:$("#submit-form").serialize(),
+            method:"post",
+            success:function (response){
+                alert("Form submitted successfully")
+                window.location.reload()
+                //window.location.href="https://google.com"
+            },
+            error:function (err){
+                alert("Something Error")
+
+            }
+        })
+    })
+</script>
 
 </body>
 
